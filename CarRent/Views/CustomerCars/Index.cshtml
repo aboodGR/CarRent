@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CarRent.Models.CustomerCar>
+
+@{
+    ViewData["Title"] = "Favorites";
+}
+
+<h2>Favorites</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Car</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var fav in Model)
+        {
+            <tr>
+                <td>@fav.Customer?.FullName</td>
+                <td>@fav.Car?.Brand - @fav.Car?.Model</td>
+                <td>
+                    <form asp-action="DeleteFavorite" asp-controller="CustomerCars" method="post" style="display:inline;">
+                        <input type="hidden" name="customerId" value="@fav.CustomerId" />
+                        <input type="hidden" name="carId" value="@fav.CarId" />
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

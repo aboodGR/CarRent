@@ -1,0 +1,50 @@
+﻿@model CarRent.Models.Rental
+
+<h2>Create Rental</h2>
+
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <!-- Customer -->
+    <div class="form-group">
+        <label asp-for="CustomerId"></label>
+        <select asp-for="CustomerId"
+                class="form-control"
+                asp-items="ViewBag.CustomerId">
+            <option value="">-- Select Customer --</option>
+        </select>
+    </div>
+
+    <!-- Car -->
+    <div class="form-group">
+        <label asp-for="CarId"></label>
+        <select asp-for="CarId"
+                class="form-control"
+                asp-items="ViewBag.CarId">
+            <option value="">-- Select Car --</option>
+        </select>
+    </div>
+
+    <!-- Start Date -->
+    <div class="form-group">
+        <label asp-for="StartDate"></label>
+        <input asp-for="StartDate" class="form-control" />
+    </div>
+
+    <!-- End Date -->
+    <div class="form-group">
+        <label asp-for="EndDate"></label>
+        <input asp-for="EndDate" class="form-control" />
+    </div>
+
+    <!-- Total Price -->
+    <div class="form-group">
+        <label asp-for="TotalPrice"></label>
+        <input asp-for="TotalPrice" class="form-control" />
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</form>

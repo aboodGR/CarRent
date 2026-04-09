@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CarRent.Models.Rental>
+
+@{
+    ViewData["Title"] = "Rentals";
+}
+
+<h2>Rentals</h2>
+
+<!-- Button to Reports page -->
+<a asp-action="Report" class="btn btn-primary mb-3">View Report</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Car</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Total Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var rental in Model)
+        {
+            <tr>
+                <td>@rental.RentalId</td>
+                <td>@rental.Customer?.FullName</td>
+                <td>@rental.Car?.Brand - @rental.Car?.Model</td>
+                <td>@rental.StartDate.ToShortDateString()</td>
+                <td>@rental.EndDate.ToShortDateString()</td>
+                <td>@rental.TotalPrice</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@rental.RentalId" class="btn btn-primary btn-sm">Details</a>
+                    <a asp-action="Edit" asp-route-id="@rental.RentalId" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@rental.RentalId" class="btn btn-danger btn-sm">Delete</a>
+
+                    <!-- Add to Favorites Button -->
+                    <form asp-controller="CustomerCars" asp-action="AddFavorite" method="post" style="display:inline;">
+                        <input type="hidden" name="customerId" value="@rental.CustomerId" />
+                        <input type="hidden" name="carId" value="@rental.CarId" />
+                        <button type="submit" class="btn btn-info btn-sm">Add to Favorites</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-success mt-3">Add New Rental</a>

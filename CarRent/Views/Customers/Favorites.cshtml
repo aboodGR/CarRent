@@ -1,0 +1,10 @@
+﻿@model CarRent.Models.Customer
+
+<h2>@Model.FullName - Favorite Cars</h2>
+
+<ul>
+    @foreach (var item in Model.CustomerCars)
+    {
+        <li>@item.Car.Brand @item.Car.Model</li>
+    }
+</ul>

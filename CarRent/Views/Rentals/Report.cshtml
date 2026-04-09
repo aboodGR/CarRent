@@ -1,0 +1,17 @@
+﻿@model IEnumerable<dynamic>
+
+<h2>Revenue by Car Brand</h2>
+
+<table class="table">
+    <tr>
+        <th>Brand</th>
+        <th>Total Revenue</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Brand</td>
+            <td>@item.TotalRevenue</td>
+        </tr>
+    }
+</table>
